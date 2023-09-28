@@ -33,7 +33,7 @@ export const Home = () => {
     return (
         <div>
             <button className="bg-transparent text-2xl" onClick={handleShow}>{show ? 'Exibir mais' : 'Exibir menos'}</button><br />
-            <div className={`${show && 'h-[380px] overflow-y-hidden'}`}>
+            <div className={`${show && 'h-[384px] overflow-y-hidden'}`}>
                 {isLoading && <Loading />}
                 {albums.map((item, index) => (
                         <Link to={`/album/${index + 1}`} className="max-w-fit">
