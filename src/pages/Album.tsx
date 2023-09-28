@@ -30,10 +30,6 @@ export const Album = () => {
         navigate(-1);
     }
 
-    const handleLoading = () => {
-        return <Loading />
-    }
-
     return (
         <div className='h-full'>
             {isLoading ? <Loading /> :
@@ -49,7 +45,7 @@ export const Album = () => {
                         {photos.map((item, index) => (
                             <Link to={`/photo/${item.id}`}>
                                 <div key={index} className='border border-white/30 hover:bg-black/50 rounded-md w-full p-2'>
-                                    <img src={item.thumbnailUrl} onLoadStartCapture={handleLoading} alt="" />
+                                    <img src={item.thumbnailUrl} alt="" />
                                 </div>
                             </Link>
                         ))}

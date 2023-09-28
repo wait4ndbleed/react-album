@@ -42,14 +42,7 @@ export const PhotoItem = () => {
                 </button>
                 {photo?.title}
                 <div className="flex justify-center mb-6">
-                    
-                    <script >
-                        <img src={`${photo?.url}`} className="mt-3" alt="" />
-                    </script>
-
-                    <template>
-                        carregando
-                    </template>
+                    <img src={`${photo?.url}`} className="mt-3" alt="" />
                 </div>
             </>
             }
