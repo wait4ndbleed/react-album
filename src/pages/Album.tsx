@@ -35,18 +35,20 @@ export const Album = () => {
             <>
                 <button
                     onClick={handleBackButton}
-                    className='m-2'
+                    className='my-2 bg-transparent'
                 >
                     Voltar
                 </button>
-                <div className='grid grid-cols-5 gap-4 m-2 w-fit'>
-                    {photos.map((item, index) => (
-                        <Link to={`/photo/${item.id}`}>
-                            <div key={index} className='border-2 border-slate-900 p-3'>
-                                <img src={item.thumbnailUrl} alt="" />
-                            </div>
-                        </Link>
-                    ))}
+                <div className='w-full flex justify-center'>
+                    <div className='grid grid-cols-2 base:grid-cols-3 md:grid-cols-5 gap-4 m-2 w-fit'>
+                        {photos.map((item, index) => (
+                            <Link to={`/photo/${item.id}`}>
+                                <div key={index} className='border border-white/30 hover:bg-black/50 rounded-md w-full p-2'>
+                                    <img src={item.thumbnailUrl} alt="" />
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
                 </div>
             </>
             }

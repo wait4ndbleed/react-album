@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 export const Home = () => {
     const [ albums, setAlbums ] = useState<Album[]>([]);
     const [ isLoading, setIsLoading ] = useState(false);
+    const [ show, setShow ] = useState<boolean>(true);
 
     useEffect(() => {
         loadAlbums();
@@ -18,16 +19,27 @@ export const Home = () => {
         setIsLoading(false);
     }
 
+    const handleShow = () => {
+        if (show) {
+            setShow(false);
+        } else {
+            setShow(true);
+        }
+    }
+
     return (
         <div>
-            {isLoading && 'Carregando...'}
-            {albums.map((item, index) => (
-                <Link to={`/album/${index + 1}`}>
-                    <div key={index} className="border-2 border-slate-900 m-3 p-3">
-                        {item.title}
-                    </div>
-                </Link>
-            ))}
+            <button className="bg-transparent text-2xl" onClick={handleShow}>{show ? 'Exibir mais' : 'Exibir menos'}</button><br />
+            <div className={`${show && 'h-[380px] overflow-y-hidden'}`}>
+                {isLoading && 'Carregando...'}
+                {albums.map((item, index) => (
+                        <Link to={`/album/${index + 1}`} className="max-w-fit">
+                            <div key={index} className="m-3 p-3 border border-white/30 rounded-lg hover:bg-black/50 hover:text-white">
+                                {item.title}
+                            </div>
+                        </Link>
+                ))}
+            </div>
         </div>
     )
 }

@@ -35,12 +35,14 @@ export const PhotoItem = () => {
             <>
                 <button
                     onClick={handleBackButton}
-                    className="m-2 block"
+                    className="my-2 bg-transparent block"
                 >
                     Voltar
                 </button>
                 {photo?.title}
-                <img src={`${photo?.url}`} className="mt-3" alt="" />
+                <div className="flex justify-center mb-6">
+                    <img src={`${photo?.url}`} className="mt-3" alt="" />
+                </div>
             </>
             }
         </>
