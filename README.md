@@ -12,7 +12,7 @@ Essa é a solução do exercício de album de fotos do curso B7Web. O objetivo e
 ### Links
 
 - Solution URL: [https://github.com/wait4ndbleed/react-album](https://github.com/wait4ndbleed/react-album)
-- Live Site URL: [https://coruscating-faloodeh-a378a8.netlify.app](https://coruscating-faloodeh-a378a8.netlify.app)
+- Live Site URL: [https://wondrous-travesseiro-2b868c.netlify.app](https://wondrous-travesseiro-2b868c.netlify.app)
 
 
 ### Feito com

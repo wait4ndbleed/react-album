@@ -7,7 +7,6 @@ import { Loading } from "../utils/Loading";
 export const Home = () => {
     const [ albums, setAlbums ] = useState<Album[]>([]);
     const [ isLoading, setIsLoading ] = useState(false);
-    const [ show, setShow ] = useState<boolean>(true);
 
     useEffect(() => {
         loadAlbums(); 
@@ -22,16 +21,9 @@ export const Home = () => {
         }, 100);
     }
 
-    const handleShow = () => {
-        if (show) {
-            setShow(false);
-        } else {
-            setShow(true);
-        }
-    }
-
     return (
         <div>
+<<<<<<< HEAD
             <button className="bg-transparent text-2xl" onClick={handleShow}>{show ? 'Exibir mais' : 'Exibir menos'}</button><br />
             <div className={`${show && 'h-[384px] overflow-y-hidden'}`}>
                 {isLoading && <Loading />}
@@ -44,6 +36,16 @@ export const Home = () => {
                 ))}
                 
             </div>
+=======
+            {isLoading && 'Carregando...'}
+            {albums.map((item, index) => (
+                <Link to={`/album/${index + 1}`}>
+                    <div key={index} className="border-2 border-slate-900 m-3 p-3">
+                        {item.title}
+                    </div>
+                </Link>
+            ))}
+>>>>>>> parent of 3e49eef (Atualizando css)
         </div>
     )
 }
