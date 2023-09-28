@@ -32,17 +32,21 @@ export const Home = () => {
 
     return (
         <div>
-            <button className="bg-transparent text-2xl" onClick={handleShow}>{show ? 'Exibir mais' : 'Exibir menos'}</button><br />
-            <div className={`${show && 'h-[384px] overflow-y-hidden'}`}>
-                {isLoading && <Loading />}
-                {albums.map((item, index) => (
-                        <Link to={`/album/${index + 1}`} className="max-w-fit">
-                            <div key={index} className="m-3 p-3 border border-white/30 rounded-lg hover:bg-black/50 hover:text-white">
-                                {item.title}
-                            </div>
-                        </Link>
-                ))}
-            </div>
+            {isLoading ? <Loading /> : 
+            <>
+               <button className="bg-transparent text-2xl" onClick={handleShow}>{show ? 'Exibir mais' : 'Exibir menos'}</button><br />
+                <div className={`${show && 'h-[384px] overflow-y-hidden'}`}>
+                    {albums.map((item, index) => (
+                            <Link to={`/album/${index + 1}`} className="max-w-fit">
+                                <div key={index} className="m-3 p-3 border border-white/30 rounded-lg hover:bg-black/50 hover:text-white">
+                                    {item.title}
+                                </div>
+                            </Link>
+                    ))}
+                </div> 
+            </>
+            }
+            
         </div>
     )
 }
