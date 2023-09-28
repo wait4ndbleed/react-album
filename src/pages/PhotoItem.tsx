@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import { Photo } from "../types/Photo";
 import { api } from "../utils/api";
+import { Loading } from "../utils/Loading";
 
 export const PhotoItem = () => {
     const params = useParams();
@@ -31,7 +32,7 @@ export const PhotoItem = () => {
 
     return (
         <>
-            {isLoading ? 'Carregando...' :
+            {isLoading ? <Loading /> :
             <>
                 <button
                     onClick={handleBackButton}
@@ -41,7 +42,14 @@ export const PhotoItem = () => {
                 </button>
                 {photo?.title}
                 <div className="flex justify-center mb-6">
-                    <img src={`${photo?.url}`} className="mt-3" alt="" />
+                    
+                    <script >
+                        <img src={`${photo?.url}`} className="mt-3" alt="" />
+                    </script>
+
+                    <template>
+                        carregando
+                    </template>
                 </div>
             </>
             }

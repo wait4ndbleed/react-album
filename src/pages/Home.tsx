@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { api } from "../utils/api"
 import { Album } from "../types/Album";
 import { Link } from "react-router-dom";
+import { Loading } from "../utils/Loading";
 
 export const Home = () => {
     const [ albums, setAlbums ] = useState<Album[]>([]);
@@ -16,7 +17,9 @@ export const Home = () => {
         setIsLoading(true);
         const json = await api.getAllAlbums();
         setAlbums(json);
-        setIsLoading(false);
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 100);
     }
 
     const handleShow = () => {
@@ -31,7 +34,7 @@ export const Home = () => {
         <div>
             <button className="bg-transparent text-2xl" onClick={handleShow}>{show ? 'Exibir mais' : 'Exibir menos'}</button><br />
             <div className={`${show && 'h-[380px] overflow-y-hidden'}`}>
-                {isLoading && 'Carregando...'}
+                {isLoading && <Loading />}
                 {albums.map((item, index) => (
                         <Link to={`/album/${index + 1}`} className="max-w-fit">
                             <div key={index} className="m-3 p-3 border border-white/30 rounded-lg hover:bg-black/50 hover:text-white">
@@ -39,6 +42,7 @@ export const Home = () => {
                             </div>
                         </Link>
                 ))}
+                
             </div>
         </div>
     )

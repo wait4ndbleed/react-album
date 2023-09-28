@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Photo } from '../types/Photo';
 import { api } from '../utils/api';
+import { Loading } from '../utils/Loading';
 
 export const Album = () => {
     const params = useParams();
@@ -29,9 +30,13 @@ export const Album = () => {
         navigate(-1);
     }
 
+    const handleLoading = () => {
+        return <Loading />
+    }
+
     return (
-        <>
-            {isLoading ? 'Carregando...' :
+        <div className='h-full'>
+            {isLoading ? <Loading /> :
             <>
                 <button
                     onClick={handleBackButton}
@@ -44,7 +49,7 @@ export const Album = () => {
                         {photos.map((item, index) => (
                             <Link to={`/photo/${item.id}`}>
                                 <div key={index} className='border border-white/30 hover:bg-black/50 rounded-md w-full p-2'>
-                                    <img src={item.thumbnailUrl} alt="" />
+                                    <img src={item.thumbnailUrl} onLoadStartCapture={handleLoading} alt="" />
                                 </div>
                             </Link>
                         ))}
@@ -52,6 +57,6 @@ export const Album = () => {
                 </div>
             </>
             }
-        </>
+        </div>
     )
 }
