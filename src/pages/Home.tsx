@@ -10,7 +10,7 @@ export const Home = () => {
     const [ show, setShow ] = useState<boolean>(true);
 
     useEffect(() => {
-        loadAlbums();
+        loadAlbums(); 
     }, []);
 
     const loadAlbums = async () => {
