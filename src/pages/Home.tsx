@@ -3,6 +3,7 @@ import { api } from "../utils/api"
 import { Album } from "../types/Album";
 import { Link } from "react-router-dom";
 import { Loading } from "../utils/Loading";
+import { useInView } from "react-intersection-observer";
 
 export const Home = () => {
     const [ albums, setAlbums ] = useState<Album[]>([]);
@@ -30,20 +31,22 @@ export const Home = () => {
         }
     }
 
+    let x = 1;
+
     return (
         <div>
             {isLoading ? <Loading /> : 
             <>
                <button className="bg-transparent text-2xl" onClick={handleShow}>{show ? 'Exibir mais' : 'Exibir menos'}</button><br />
-                <div className={`${show && 'h-[384px] overflow-y-hidden'}`}>
+                <div className={`${show && 'h-[384px] overflow-y-hidden'} overflow-x-hidden`}>
                     {albums.map((item, index) => (
                             <Link to={`/album/${index + 1}`} className="max-w-fit">
-                                <div key={index} className="m-3 p-3 border border-white/30 rounded-lg hover:bg-black/50 hover:text-white">
+                                <div key={index} className={`slide${x === 1 ? x=2 : x=1} my-3 p-3 border border-white/30 rounded-lg hover:bg-black/50 hover:text-white overflow-x-visible ${index}`}>
                                     {item.title}
                                 </div>
                             </Link>
                     ))}
-                </div> 
+                </div>
             </>
             }
             

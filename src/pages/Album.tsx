@@ -19,7 +19,9 @@ export const Album = () => {
             setIsLoading(true);
             const json = await api.getAlbum(id);
             setPhotos(json);
-            setIsLoading(false);
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 100);
         }
         loadPhotos();
     }, [id]);
@@ -31,28 +33,31 @@ export const Album = () => {
     }
 
     return (
-        <div className='h-full'>
-            {isLoading ? <Loading /> :
             <>
-                <button
-                    onClick={handleBackButton}
-                    className='my-2 bg-transparent'
-                >
-                    Voltar
-                </button>
-                <div className='w-full flex justify-center'>
-                    <div className='grid grid-cols-2 base:grid-cols-3 md:grid-cols-5 gap-4 m-2 w-fit'>
-                        {photos.map((item, index) => (
-                            <Link to={`/photo/${item.id}`}>
-                                <div key={index} className='border border-white/30 hover:bg-black/50 rounded-md w-full p-2'>
-                                    <img src={item.thumbnailUrl} alt="" />
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
+                {isLoading && <Loading />}
+                <div className='show'>
+                    {isLoading ? '' :
+                    <>
+                        <button
+                            onClick={handleBackButton}
+                            className='my-2 bg-transparent'
+                        >
+                            Voltar
+                        </button>
+                        <div className='w-full flex justify-center'>
+                            <div className='grid grid-cols-2 base:grid-cols-3 md:grid-cols-5 gap-4 m-2 w-fit'>
+                                {photos.map((item, index) => (
+                                    <Link to={`/photo/${item.id}`}>
+                                        <div key={index} className='border border-white/30 hover:bg-black/50 rounded-md w-full p-2'>
+                                            <img src={item.thumbnailUrl} alt="" />
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </>
+                    }
                 </div>
             </>
-            }
-        </div>
     )
 }
