@@ -35,7 +35,7 @@ export const Album = () => {
     return (
             <>
                 {isLoading && <Loading />}
-                <div className='show'>
+                <div className='animate-[show_2.5s]'>
                     {isLoading ? '' :
                     <>
                         <button

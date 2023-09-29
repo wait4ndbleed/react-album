@@ -3,7 +3,6 @@ import { api } from "../utils/api"
 import { Album } from "../types/Album";
 import { Link } from "react-router-dom";
 import { Loading } from "../utils/Loading";
-import { useInView } from "react-intersection-observer";
 
 export const Home = () => {
     const [ albums, setAlbums ] = useState<Album[]>([]);
